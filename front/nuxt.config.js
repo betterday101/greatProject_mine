@@ -1,3 +1,10 @@
+/*
+ * @Description: 
+ * @Author: chenzel
+ * @Date: 2021-05-13 19:08:14
+ * @LastEditTime: 2021-05-14 14:15:37
+ * @LastEditors: chenzel
+ */
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -37,7 +44,8 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -46,5 +54,14 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: [/^element-ui/]
+  },
+  proxy:{
+    "/api":{
+      target:"http://localhost:7001",
+      secure:false,
+      pathRewrite:{
+        "^/api":""
+      }
+    }
   }
 }
